@@ -1,15 +1,34 @@
 # ng2-ace
-A basic ace editor directive for angular 2.
+Ace editor integration with typescript for angular 2.
 
 # Install
-`npm i -s ng2-ace`
+`npm i -s ng2-ace-editor`
 
 # Sample Usage
 
+> Minimal
+
 ```js
 import { Component } from 'angular2/core';
+import { AceEditorDirective } from 'ng2-ace-editor';
 
-import { AceEditorDirective } from 'ng2-ace';
+@Component({
+  directives: [AceEditorDirective],
+  template: `
+  <div ace-editor
+       [text]="text"></div>
+  `
+})
+export class MyComponent {
+    text:string = "";
+}
+```
+
+> Complete
+
+```js
+import { Component } from 'angular2/core';
+import { AceEditorDirective } from 'ng2-ace-editor';
 
 import 'brace/theme/clouds';
 import 'brace/mode/sql';
@@ -24,17 +43,65 @@ import 'brace/mode/sql';
        [options]="options"
        [readOnly]="false"
        (textChanged)="onChange($event)"
-       style="display:block; height: 80vh; width:100%"></div>
+       style="min-height: 200px; width:100%; overflow: auto;"></div>
   `
 })
 export class MyComponent {
-  constructor() {
-    this.text = 'test';
-    this.options = { printMargin: false };
-    this.onChange = (data) => {
-      console.log(data);
+    text:string = "";
+    options:any = {maxLines: 1000, printMargin: false};
+    
+    onChange(code) {
+        console.log("new code", code);
     }
-  }
 }
 ```
-Important pieces to note in the HTML template: `[ace-editor]` attribute, `[text]`, `[theme]`, `[mode]`, `[readOnly]`, `[options]` inputs, `(textChanged)` output. As per Ace, you must also make it a `display: block;` and give it a width and height.
+
+# Angular Cli
+> angular-cli-build.js
+
+```js
+... 
+module.exports = function(defaults) {
+  return new Angular2App(defaults, {
+    vendorNpmFiles: [
+      ...
+      'brace/**/*.+(js|js.map)',
+      'w3c-blob/**/*.+(js|js.map)',
+      'buffer-shims/**/*.+(js|js.map)'
+    ]
+  });
+};
+...
+```
+
+> angular-cli-build.js
+
+```js
+... 
+const map:any = {
+    'brace' : 'vendor/brace',
+    'w3c-blob' : 'vendor/w3c-blob',
+    'buffer': 'vendor/buffer-shims'
+};
+
+/** User packages configuration. */
+const packages:any = {
+    'w3c-blob': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
+    },
+    'brace': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
+    },
+    'buffer': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
+    }
+};
+...
+```
+
