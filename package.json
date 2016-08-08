@@ -1,6 +1,6 @@
 {
   "name": "ng2-ace-editor",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Ace editor integration with typescript for angular 2.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,9 @@
     "url": "https://github.com/fxmontigny/ng2-ace-editor/issues"
   },
   "dependencies": {
-    "brace": "^0.8.0",
+    "brace": "^0.8.0"
+  },
+  "peerDependencies": {
     "@angular/core": "2.0.0-rc.4"
   },
   "devDependencies": {
