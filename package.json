@@ -28,12 +28,12 @@
     "url": "https://github.com/fxmontigny/ng2-ace-editor/issues"
   },
   "dependencies": {
-    "brace": "^0.8.0"
+    "brace": "^0.8.0",
+    "@angular/core": "2.0.0-rc.4"
   },
   "devDependencies": {
     "typescript": "1.8.10",
     "typings": "0.8.1",
-    "@angular/core": "2.0.0-rc.4",
     "es6-shim": "0.35.1",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12"
