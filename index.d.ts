@@ -8,6 +8,7 @@ export declare class AceEditorDirective {
     _readOnly: boolean;
     _theme: string;
     _mode: string;
+    _autoUpdateContent: boolean;
     editor: any;
     oldText: any;
     constructor(elementRef: ElementRef);
@@ -18,4 +19,5 @@ export declare class AceEditorDirective {
     theme: any;
     mode: any;
     text: any;
+    autoUpdateContent: any;
 }

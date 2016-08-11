@@ -19,6 +19,7 @@ var AceEditorDirective = (function () {
         this._readOnly = false;
         this._theme = "monokai";
         this._mode = "html";
+        this._autoUpdateContent = true;
         var el = elementRef.nativeElement;
         this.editor = ace["edit"](el);
         this.init();
@@ -77,9 +78,18 @@ var AceEditorDirective = (function () {
         set: function (text) {
             if (text == null)
                 text = "";
-            this.editor.setValue(text);
-            this.editor.clearSelection();
-            this.editor.focus();
+            if (this._autoUpdateContent == true) {
+                this.editor.setValue(text);
+                this.editor.clearSelection();
+                this.editor.focus();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AceEditorDirective.prototype, "autoUpdateContent", {
+        set: function (status) {
+            this._autoUpdateContent = status;
         },
         enumerable: true,
         configurable: true
@@ -113,10 +123,15 @@ var AceEditorDirective = (function () {
         __metadata('design:type', Object), 
         __metadata('design:paramtypes', [Object])
     ], AceEditorDirective.prototype, "text", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], AceEditorDirective.prototype, "autoUpdateContent", null);
     AceEditorDirective = __decorate([
         core_1.Directive({
             selector: '[ace-editor]',
-            inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
+            inputs: ['text', 'mode', 'theme', 'readOnly', 'options', 'autoUpdateContent'],
             outputs: ['textChanged']
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])

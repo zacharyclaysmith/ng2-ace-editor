@@ -42,6 +42,7 @@ import 'brace/mode/sql';
        [theme]="'clouds'"
        [options]="options"
        [readOnly]="false"
+       [autoUpdateContent]="true" //change content when [text] change
        (textChanged)="onChange($event)"
        style="min-height: 200px; width:100%; overflow: auto;"></div>
   `

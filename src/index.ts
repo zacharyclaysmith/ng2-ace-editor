@@ -7,7 +7,7 @@ declare var ace:any;
 
 @Directive({
   selector: '[ace-editor]',
-  inputs: ['text', 'mode', 'theme', 'readOnly', 'options'],
+  inputs: ['text', 'mode', 'theme', 'readOnly', 'options', 'autoUpdateContent'],
   outputs: ['textChanged']
 })
 export class AceEditorDirective {
@@ -16,6 +16,7 @@ export class AceEditorDirective {
   _readOnly:boolean = false;
   _theme:string = "monokai";
   _mode:string = "html";
+  _autoUpdateContent:boolean = true;
   editor:any;
   oldText:any;
 
@@ -66,10 +67,16 @@ export class AceEditorDirective {
 
   @Input() set text(text) {
       if(text == null)
-        text = "";
+          text = "";
 
-      this.editor.setValue(text);
-      this.editor.clearSelection();
-      this.editor.focus();
+      if(this._autoUpdateContent == true) {
+          this.editor.setValue(text);
+          this.editor.clearSelection();
+          this.editor.focus();
+      }
+  }
+
+  @Input() set autoUpdateContent(status) {
+      this._autoUpdateContent = status;
   }
 }
