@@ -62,7 +62,7 @@ export class AceEditorDirective {
 
   @Input() set mode(mode) {
     this._mode = mode;
-    this.editor.setMode(`ace/mode/${mode}`);
+    this.editor.getSession().setMode(`ace/mode/${mode}`);
   }
 
   @Input() set text(text) {
