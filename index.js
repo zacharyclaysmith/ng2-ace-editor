@@ -69,7 +69,7 @@ var AceEditorDirective = (function () {
     Object.defineProperty(AceEditorDirective.prototype, "mode", {
         set: function (mode) {
             this._mode = mode;
-            this.editor.setMode("ace/mode/" + mode);
+            this.editor.getSession().setMode("ace/mode/" + mode);
         },
         enumerable: true,
         configurable: true
