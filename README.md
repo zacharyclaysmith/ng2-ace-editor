@@ -1,6 +1,5 @@
 # ng2-ace
 
-[![Join the chat at https://gitter.im/angularfr/Lobby](https://badges.gitter.im/angularfr/angularfr.svg)](https://gitter.im/angularfr/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm version](https://badge.fury.io/js/ng2-ace-editor.svg)](https://www.npmjs.com/package/ng2-ace-editor) 
 Ace editor integration with typescript for angular 2.
 
