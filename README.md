@@ -66,6 +66,7 @@ module.exports = function(defaults) {
   return new Angular2App(defaults, {
     vendorNpmFiles: [
       ...
+      'ng2-ace-editor/**/*.+(js|js.map)',
       'brace/**/*.+(js|js.map)',
       'w3c-blob/**/*.+(js|js.map)',
       'buffer-shims/**/*.+(js|js.map)'
@@ -82,7 +83,8 @@ module.exports = function(defaults) {
 const map:any = {
     'brace' : 'vendor/brace',
     'w3c-blob' : 'vendor/w3c-blob',
-    'buffer': 'vendor/buffer-shims'
+    'buffer': 'vendor/buffer-shims',
+    'ng2-ace-editor': 'vendor/ng2-ace-editor'
 };
 
 /** User packages configuration. */
@@ -98,6 +100,11 @@ const packages:any = {
         main: 'index.js'
     },
     'buffer': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
+    },
+    'ng2-ace-editor': {
         format: 'cjs',
         defaultExtension: 'js',
         main: 'index.js'
