@@ -2,6 +2,7 @@ import { Directive, EventEmitter, Output, ElementRef, Input } from '@angular/cor
 import 'brace';
 import 'brace/theme/monokai';
 import 'brace/mode/html';
+import 'brace/mode/markdown';
 
 declare var ace:any;
 
