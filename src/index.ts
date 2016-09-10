@@ -37,9 +37,16 @@ export class AceEditorDirective {
 
   initEvents() {
     this.editor.on('change', () => {
+      console.debug("change");
+
       let newVal = this.editor.getValue();
+
+      console.debug("newValue: ", newVal);
+      console.debug("oldVal: ", this.oldText);
       if(newVal === this.oldText) return;
       if(typeof this.oldText !== 'undefined')
+        console.debug("emitting: ", newVal);
+
         this.textChanged.emit(newVal);
       this.oldText = newVal;
     });
