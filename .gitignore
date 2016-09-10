@@ -14,3 +14,7 @@ typings
 
 # OS
 .DS_Store
+
+# Jetbrains
+
+.idea
