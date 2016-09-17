@@ -33,25 +33,13 @@ export class AceEditorDirective {
     this.editor.setTheme(`ace/theme/${this._theme}`);
     this.editor.getSession().setMode(`ace/mode/${this._mode}`);
     this.editor.setReadOnly(this._readOnly);
-
-    this.textChanged.subscribe((value ) => {
-      console.debug("text changed subscription: ", value);
-    });
-
   }
 
   initEvents() {
     this.editor.on('change', () => {
-      console.debug("change");
-
       let newVal = this.editor.getValue();
-
-      console.debug("newValue: ", newVal);
-      console.debug("oldVal: ", this.oldText);
       if(newVal === this.oldText) return;
       if(typeof this.oldText !== 'undefined')
-        console.debug("emitting: ", newVal);
-
         this.textChanged.emit(newVal);
       this.oldText = newVal;
     });
@@ -86,6 +74,10 @@ export class AceEditorDirective {
           this.editor.clearSelection();
           this.editor.focus();
       }
+  }
+
+  @Input() set textChangedDebounceTime(textChangedDebounceTime){
+    this.textChanged.debounceTime(textChangedDebounceTime ? textChangedDebounceTime : 500);
   }
 
   @Input() set autoUpdateContent(status) {
