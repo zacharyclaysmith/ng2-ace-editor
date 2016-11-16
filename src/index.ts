@@ -12,6 +12,7 @@ declare var ace:any;
 })
 export class AceEditorDirective {
   @Output('textChanged') textChanged = new EventEmitter();
+  @Output('changed') changed = new EventEmitter();
   _options:any = {};
   _readOnly:boolean = false;
   _theme:string = "monokai";
@@ -36,7 +37,9 @@ export class AceEditorDirective {
   }
 
   initEvents() {
-    this.editor.on('change', () => {
+    this.editor.on('change', (event) => {
+      this.changed.emit(event); //EXPL: emits the raw ace event.
+
       let newVal = this.editor.getValue();
       if(newVal === this.oldText) return;
       if(typeof this.oldText !== 'undefined')
