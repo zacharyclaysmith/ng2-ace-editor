@@ -80,7 +80,7 @@ export class AceEditorDirective {
   }
 
   @Input() set textChangedDebounceTime(textChangedDebounceTime){
-    this.textChanged.debounceTime(textChangedDebounceTime ? textChangedDebounceTime : 500);
+    (this.textChanged as any).debounceTime(textChangedDebounceTime ? textChangedDebounceTime : 500);
   }
 
   @Input() set autoUpdateContent(status) {

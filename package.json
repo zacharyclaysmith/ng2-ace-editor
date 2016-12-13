@@ -6,7 +6,6 @@
   "scripts": {
     "prepublish": "tsc",
     "build": "tsc",
-    "postinstall": "typings install",
     "typings": "typings"
   },
   "files": [
